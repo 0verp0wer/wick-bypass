@@ -201,7 +201,7 @@ with open("tokens.txt", "r") as f:
     
     r = requests.post("https://discord.com/api/v9/interactions", headers=headers, json={"type":5,"application_id":application_id,"channel_id":channel_id,"guild_id":guild_id,"data":{"id":id_value,"custom_id":f"modalmmbrver_{token_id}","components":[{"type":1,"components":[{"type":4,"custom_id":"answer","value":captcha}]}]},"session_id":"".join(random.choice(string.ascii_letters + string.digits) for _ in range(32)),"nonce":"".join([str(random.randint(1, 9)) for _ in range(19)])})
     time.sleep(1)
-    r = requests.get(f'https://discord.com/api/v9/channels/893443303683534889/messages?limit=50', headers=authorization)
+    r = requests.get(f'https://discord.com/api/v9/channels/{channel_id}/messages?limit=50', headers=authorization)
     if r.status_code == 200:
       failed+=1
       print('['+ Fore.RED + '!' + Fore.RESET + ']' + f'Verification bypass failed with {token[:-5]}.....')
